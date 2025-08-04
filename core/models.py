@@ -6,7 +6,7 @@ class QR(models.Model):
     id = models.CharField(primary_key=True, max_length=20)
     name = models.CharField(max_length=100)
     type = models.CharField(max_length=50)
-    content = models.TextField()
+    content = models.TextField(unique=True)
     author = models.CharField(max_length=100)
     color1 = models.CharField(max_length=7)
     color2 = models.CharField(max_length=7, null=True, blank=True)
