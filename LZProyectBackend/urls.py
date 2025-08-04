@@ -1,25 +1,13 @@
-"""
-URL configuration for LZProyectBackend project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-
 from django.contrib import admin
 from django.urls import path
-from core.views import qr_list_create
+from core.views import qr_list_create, qr_list_public, qr_list_search, qr_find_by_content
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/qr/', qr_list_create, name='qr-list-create'),
+    path('admin/', admin.site.urls), # Admin de Django
+    path('api/qr/', qr_list_create, name='qr-list-create'), # Crear y listar todos los QR
+    # Guardar un QR (POST): 'api/qr/'
+    # Obtener todos los QR (GET): 'api/qr/'
+path('api/qr/public/', qr_list_public, name='qr-list-public'), # Obtener solo los QR públicos (GET)
+path('api/qr/search/', qr_list_search, name='qr-list-search'), # Buscar QR por texto (nombre, autor o contenido) (GET, parámetro 'q')
+path('api/qr/content/<str:content>/', qr_find_by_content, name='qr-find-by-content'), # Buscar un QR por su contenido (GET)
 ]

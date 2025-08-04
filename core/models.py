@@ -9,12 +9,12 @@ class QR(models.Model):
     content = models.TextField()
     author = models.CharField(max_length=100)
     color1 = models.CharField(max_length=7)
-    color2 = models.CharField(max_length=7)
+    color2 = models.CharField(max_length=7, null=True, blank=True)
     createdAt = models.DateTimeField()
     dotStyle = models.CharField(max_length=20)
     eyeStyle = models.CharField(max_length=20)
     isPublic = models.BooleanField(default=True)
-    logoImage = models.TextField()
+    logoImage = models.TextField(null=True, blank=True)
     verified = models.BooleanField(default=False)
 
     def __str__(self):
